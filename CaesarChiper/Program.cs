@@ -1,4 +1,4 @@
-﻿var words = "159357lcfd";
+﻿var words = "Hello_World!";
 string[] arrStringUpper = { "-", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 string[] arrStringLower = { "-", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 string[] arrChar = { " ", "-", "_", ".", "!", "~", "@", "$", "%", "^", "'", "/", "`", "(", ")", "{", "}", "[", "]", "?", "*", "+", "=", "&", "<", ">", "|" };
@@ -68,5 +68,6 @@ foreach (var word in words)
     result = result + str;
 }
 
-Console.WriteLine($"{result}");
+Console.WriteLine($" Words : {words}");
+Console.WriteLine($" Encrypted :{result}");
 Console.ReadKey();
