@@ -1,38 +1,72 @@
-﻿var s = "Always-Look-on-the-Bright-Side-of-Life";
-int k = 5;
-var strChiper = "";
-string str = "-abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+﻿var words = "159357lcfd";
+string[] arrStringUpper = { "-", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+string[] arrStringLower = { "-", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+string[] arrChar = { " ", "-", "_", ".", "!", "~", "@", "$", "%", "^", "'", "/", "`", "(", ")", "{", "}", "[", "]", "?", "*", "+", "=", "&", "<", ">", "|" };
+int index = 0;
 
-var len = s.Length;
-for (int i = 0; i < len; i++)
+var result = "";
+var str = "";
+
+foreach (var word in words)
 {
-    if (s[i].ToString() == "-")
+    int permutasi = 98;
+
+    var idxChar = Array.IndexOf(arrChar, word.ToString());
+
+    if (idxChar > 0)
     {
-        strChiper = strChiper + "-";
+        result = result + word;
         continue;
     }
 
-    int index = str.IndexOf(s[i]);
-
-    if (index <= 26)
+    var isUpper = Char.IsUpper(word);
+    if (isUpper)
     {
-        if (index + k > 26)
+        index = Array.IndexOf(arrStringUpper, word.ToString());
+    }
+
+    var isLower = Char.IsLower(word);
+    if (isLower)
+    {
+        index = Array.IndexOf(arrStringLower, word.ToString());
+    }
+
+    var isDigit = Char.IsDigit(word);
+    if (isDigit)
+    {
+        result = result + word;
+        continue;
+    }
+
+    if (permutasi > (arrStringUpper.Length - 1))
+    {
+        int x = (arrStringUpper.Length - 1) - index;
+        permutasi = permutasi - x;
+        while (permutasi > (arrStringUpper.Length - 1))
         {
-            index = k - (26 - index);
-        }
-        else
-        {
-            index = index + k;
+            permutasi = permutasi - (arrStringUpper.Length - 1);
         }
     }
     else
     {
-        index = index + k;
+        permutasi = permutasi + index;
+        if (permutasi > (arrStringUpper.Length - 1))
+        {
+            permutasi = permutasi - (arrStringUpper.Length - 1);
+        }
     }
 
-    var sChiper = str.ElementAt(index);
-    strChiper = strChiper + sChiper;
+    if (isUpper)
+    {
+        str = arrStringUpper[permutasi];
+    }
+    else
+    {
+        str = arrStringLower[permutasi];
+    }
+
+    result = result + str;
 }
 
-Console.WriteLine($"{strChiper}");
+Console.WriteLine($"{result}");
 Console.ReadKey();
